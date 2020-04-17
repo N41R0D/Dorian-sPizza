@@ -5,9 +5,13 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ionic serve",
     "build": "ng build",
-    "test": "ng test",
+    "build:android": "ionic cordova build android --prod --release",
+    "prepare:android": "ionic cordova prepare android --prod --no-build",
+    "emulate:android": "npm run prepare:android && ionic cordova run android --prod",
+    "test": "ng test --code-coverage",
+    "test:local": "ng test --code-coverage --watch --browsers=Chrome",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
