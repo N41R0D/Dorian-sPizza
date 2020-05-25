@@ -34,3 +34,20 @@ ion-icon {
   float: right;
   padding: 10px;
 }
+
+#notification-button {
+  position: relative;
+  width: 42px;
+  top:1px;
+  right: 1px;
+  overflow: visible!important;
+}
+
+
+#notifications-badge {
+  //background-color: red;
+  position: absolute;
+  bottom: 0;
+  right: -3px;
+  border-radius: 100%;
+}

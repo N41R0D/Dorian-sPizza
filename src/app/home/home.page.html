@@ -1,70 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Dorian's Pizza
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-title>Dorian's Pizza</ion-title>
 
+    <ion-button slot="end" routerLink="/gestion" fill="clear" color="dark">
+      <ion-icon name="information-circle-outline" size="large"></ion-icon>
+    </ion-button>
+
+    <ion-button slot="end" routerLink="/panier" fill="clear" color="dark">
+      <ion-icon name="cart-outline" size="large"></ion-icon>
+        <ion-badge id="notifications-badge" color="light">{{this.cartItemCount}}</ion-badge>
+    </ion-button>
+
+  </ion-toolbar>
+
+</ion-header>
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item>
+    <ion-item  *ngFor ="let data of PizzaArray" >
       <ion-card>
-        <ion-card-header>
-          <img src="../../assets/media/pizza.jpg">
-          <ion-card-title>Nom Pizza</ion-card-title>
-          <ion-card-subtitle>300€</ion-card-subtitle>
+        <ion-card-header (click)="goToAboutPage(data)">
+          <img [src]="data.photo">
+          <ion-card-title>{{data.nom}}</ion-card-title>
+          <ion-card-subtitle>{{data.prix}} €</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content (click)="addtocart(data.id)">
           <ion-icon size="large" name="cart-outline"></ion-icon>
         </ion-card-content>
       </ion-card>
     </ion-item>
-    <ion-item>
-      <ion-card>
-        <ion-card-header>
-          <img src="../../assets/media/pizza.jpg">
-          <ion-card-title>Nom Pizza</ion-card-title>
-          <ion-card-subtitle>300€</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon size="large" name="cart-outline"></ion-icon>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-    <ion-item>
-      <ion-card>
-        <ion-card-header>
-          <img src="../../assets/media/pizza.jpg">
-          <ion-card-title>Nom Pizza</ion-card-title>
-          <ion-card-subtitle>300€</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon size="large" name="cart-outline"></ion-icon>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
+
+<!--    <ion-item>-->
+<!--      <ion-card>-->
+<!--        <ion-card-header>-->
+<!--          <img src="../../assets/media/pizza.jpg">-->
+<!--          <ion-card-title>Nom Pizza</ion-card-title>-->
+<!--          <ion-card-subtitle>300€</ion-card-subtitle>-->
+<!--        </ion-card-header>-->
+<!--        <ion-card-content>-->
+<!--          <ion-icon size="large" name="cart-outline"></ion-icon>-->
+<!--        </ion-card-content>-->
+<!--      </ion-card>-->
+<!--    </ion-item>-->
+
   </ion-list>
-<!--</ion-content>-->
-
-<!--<ion-tabs>-->
-<!--  <ion-tab-bar slot="bottom">-->
-<!--    <ion-tab-button tab="Home">-->
-<!--      <ion-icon name="home"></ion-icon>-->
-<!--      <ion-label>Home</ion-label>-->
-<!--    </ion-tab-button>-->
-
-<!--    <ion-tab-button tab="map">-->
-<!--      <ion-icon name="cart"></ion-icon>-->
-<!--      <ion-label>Panier</ion-label>-->
-<!--    </ion-tab-button>-->
-
-<!--    <ion-tab-button tab="about">-->
-<!--      <ion-icon name="information-circle"></ion-icon>-->
-<!--      <ion-label>About</ion-label>-->
-<!--    </ion-tab-button>-->
-<!--  </ion-tab-bar>-->
-<!--</ion-tabs>-->
-
-
 </ion-content>

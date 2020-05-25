@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item>
+  <ion-text>
+      <p>{{selectedItem.nom}}</p>
+  </ion-text>
+    </ion-item>
+
+
+  <div class="zdetails">
+      <ion-item class="zimg" >
+        <img [src]="selectedItem.photo">
+      </ion-item>
+
+      <ion-item>
+        <ion-text>
+          <p>{{selectedItem.nom}}</p>
+        </ion-text>
+
+        <ion-text>
+          <p>{{selectedItem.prix}} €</p>
+        </ion-text>
+      </ion-item>
+
+      <ion-text>
+        <p>Ingrediens:</p>
+        <p *ngFor="let idIn of IngredientsArray">{{idIn.nom}}</p>
+      </ion-text>
+
+          <ion-icon size="large" name="cart-outline"></ion-icon>
+
+  </div>
+</ion-content>

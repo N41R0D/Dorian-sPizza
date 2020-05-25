@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Administration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-list-header>
+    Pizzas
+  </ion-list-header>
+  <ion-item  *ngFor ="let pizza of PizzaArray" >
+    <ion-label>
+      <h2>{{pizza.nom}}</h2>
+    </ion-label>
+    <ion-icon name="create-outline"></ion-icon>
+    <ion-icon name="trash-outline"></ion-icon>
+  </ion-item>
+</ion-list>
+
+  <ion-button expand="block" routerLink="/pizzaform">Ajouter une pizza</ion-button>
+
+  <ion-list>
+    <ion-list-header>
+      Ingredients
+    </ion-list-header>
+    <ion-item  *ngFor ="let ingredient of IngredientsArray" >
+      <ion-label>
+        <h2>{{ingredient.nom}}</h2>
+      </ion-label>
+      <ion-icon name="create-outline"></ion-icon>
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

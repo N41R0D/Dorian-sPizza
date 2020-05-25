@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>panier</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!--<ion-button (click)="getcart()"></ion-button>-->
+<!--<ion-button (click)="deletepizzabyid(2)"></ion-button>-->
+
+  <ion-list>
+    <ion-item *ngFor ="let data of PanierArray">
+      <ion-label>{{data.nompizza}}</ion-label>
+      <ng-container>
+        <ion-icon name="remove-outline" (click)="decreaseProduct(data.idpizza)"></ion-icon>
+        <ion-text>{{data.qty}}</ion-text>
+        <ion-icon name="add-outline" (click)="addtocart(data.idpizza)"></ion-icon>
+      </ng-container>
+        <ion-icon name="trash-outline" (click)="deletepizzabyid(data.idpizza)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-text *ngIf="PanierArray empty">Aucune pizza dans le panier</ion-text>
+</ion-content>
