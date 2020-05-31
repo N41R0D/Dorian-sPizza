@@ -31,7 +31,6 @@ export class DetailsPage implements OnInit {
               this.IngredientsArray.push(new ingredients(result[index]));
             }}
       );
-      // console.log(this.IngredientsArray);
     }
   }
 }

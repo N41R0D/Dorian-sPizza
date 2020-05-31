@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'pizzaform',
     loadChildren: () => import('./pizzaform/pizzaform.module').then( m => m.PizzaformPageModule)
   },
+  {
+    path: 'ingredientform',
+    loadChildren: () => import('./ingredientform/ingredientform.module').then( m => m.IngredientformPageModule)
+  },
 
 ];
 

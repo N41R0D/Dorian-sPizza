@@ -33,8 +33,8 @@ export class GestionPage implements OnInit {
     this.PizzaArray.splice(0, this.PizzaArray.length);
     this.pizzasservice.loadData('pizza').subscribe(
         result => {
-          for (let index in result) {
-            this.PizzaArray.push(new pizzas(result[index]));
+          for (let indexpizza in result) {
+            this.PizzaArray.push(new pizzas(result[indexpizza]));
           }}
     );
   }
@@ -42,8 +42,8 @@ export class GestionPage implements OnInit {
   loadDataIngredients() {
     this.pizzasservice.loadData('ingredient').subscribe(
         result => {
-          for (let index in result) {
-            this.IngredientsArray.push(new ingredients(result[index]));
+          for (let indexingredient in result) {
+            this.IngredientsArray.push(new ingredients(result[indexingredient]));
           }}
     );
   }
@@ -71,6 +71,15 @@ export class GestionPage implements OnInit {
       }
     };
     this.router.navigate(['/pizzaform'], navigationExtras);
+  }
+
+  ingredientmodyfy(ingredient) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        ingredient: ingredient
+      }
+    };
+    this.router.navigate(['/ingredientform'], navigationExtras);
   }
 
 }

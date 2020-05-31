@@ -25,10 +25,7 @@ export class HomePage implements OnInit{
   }
 
   doRefresh(event) {
-    console.log('Begin async operation');
-    // this.loadData();
     this.ngOnInit();
-    console.log('Async operation has ended');
     event.target.complete();
   }
 

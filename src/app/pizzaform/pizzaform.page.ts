@@ -3,7 +3,6 @@ import ingredients from '../models/ingredients';
 import {PizzasService} from '../services/pizzas.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {NavigationExtras, Router} from '@angular/router';
-import {PannierService} from '../services/panier.service';
 import pizzas from '../models/pizzas';
 
 @Component({
@@ -33,7 +32,6 @@ export class PizzaformPage implements OnInit {
 
   loadexistedpizza() {
     this.selectedItem = this.router.getCurrentNavigation().extras.state.pizza;
-    console.log(this.selectedItem);
     this.pizzaname = this.selectedItem.nom;
     this.imgData = this.selectedItem.photo;
     this.pizzaprice = this.selectedItem.prix;

@@ -11,8 +11,7 @@ import {HttpClient} from '@angular/common/http';
     providedIn: 'root'
 })
 export class PannierService {
-
-    private cart = [];
+    
     private cartItemCount = new BehaviorSubject(0);
     PanierArray: Array<panier> = new Array<panier>();
 
@@ -47,7 +46,6 @@ export class PannierService {
                 }
             );
         }
-        console.log(this.PanierArray);
         this.cartItemCount.next(this.cartItemCount.value + 1);
     }
 
@@ -57,9 +55,7 @@ export class PannierService {
                 p.qty -= 1;
 
                 if (p.qty == 0) {
-                    console.log(p);
                     const index = this.PanierArray.indexOf(p);
-                    console.log(index);
                     this.PanierArray.splice(index, 1);
                 }
             }

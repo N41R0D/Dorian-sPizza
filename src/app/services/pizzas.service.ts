@@ -15,7 +15,7 @@ export class PizzasService {
     }
 
     loadData(url: string) {
-        return this.http.get<pizzas[]>('https://api.ynov.jcatania.io/' + url)
+        return this.http.get('https://api.ynov.jcatania.io/' + url)
             .pipe(
                 map(value => {
                     if (value.length > 0) {
@@ -28,7 +28,7 @@ export class PizzasService {
     }
 
     deleteData(url: string) {
-        return this.http.delete<pizzas[]>('https://api.ynov.jcatania.io/' + url)
+        return this.http.delete('https://api.ynov.jcatania.io/' + url)
             .subscribe(() => {
                 this.datatest.next(true)},
                 err => console.log(err)
@@ -38,7 +38,7 @@ export class PizzasService {
 
     addData(url: string, zpizza: any) {
 
-        return this.http.post<pizzas[]>('https://api.ynov.jcatania.io/' + url, zpizza,
+        return this.http.post('https://api.ynov.jcatania.io/' + url, zpizza,
             {
                 headers:{
                     'content':"application/json"
@@ -53,7 +53,7 @@ export class PizzasService {
 
     patchData(url: string, zpizza: any) {
 
-        return this.http.patch<pizzas[]>('https://api.ynov.jcatania.io/' + url, zpizza,
+        return this.http.patch('https://api.ynov.jcatania.io/' + url, zpizza,
             {
                 headers:{
                     'content':"application/json"

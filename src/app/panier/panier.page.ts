@@ -19,7 +19,6 @@ export class PanierPage implements OnInit {
   }
 
   getcart() {
-    console.log(this.panierservice.getCart());
     this.PanierArray = this.panierservice.getCart();
   }
 
