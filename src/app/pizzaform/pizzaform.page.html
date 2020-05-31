@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
     <ion-title>pizzaform</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <form>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Pizza Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required [(ngModel)]="pizzaname" name="pizzaname" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Price <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" [(ngModel)]="pizzaprice" name="pizzaprice" ></ion-input>
+      </ion-item>
+    </ion-list>
 
+      <!-- Checkboxes in a List -->
+      <ion-list class="form_ingredient">
+        <ion-item *ngFor="let entry of IngredientsArray">
+          <ion-label>{{entry.nom}}</ion-label>
+          <ion-checkbox [checked]="pizzaingredients.indexOf(entry.id) >=0" slot="end" name="{{entry.nom}}" (ionChange)="checkingredient(entry.id)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+    <div class="photopart">
+      <ion-fab class="photobutton" horizontal="left" slot="fixed" (click)="takePicture()" >
+        <ion-fab-button>
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-card class="photoresult" *ngIf="imgData">
+        <img [src]="imgData">
+      </ion-card>
+    </div>
+
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="sendpizza()">Envoyer</ion-button>
+    </div>
+
+  </form>
 </ion-content>

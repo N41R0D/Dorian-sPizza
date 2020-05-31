@@ -21,13 +21,11 @@ export class PannierService {
 
 
     getCart() {
-        // console.log(this.PanierArray);
         return this.PanierArray;
     }
 
     getCartItemCount() {
-        console.log(this.cartItemCount.value);
-        return this.cartItemCount.value;
+        return this.cartItemCount;
     }
 
     addToCart(idpizza: number) {

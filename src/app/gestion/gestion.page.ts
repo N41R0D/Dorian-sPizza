@@ -4,6 +4,8 @@ import {PizzasService} from '../services/pizzas.service';
 import {PannierService} from '../services/panier.service';
 import pizzas from '../models/pizzas';
 import ingredients from '../models/ingredients';
+import {Subject} from 'rxjs';
+import {NavigationExtras, Router} from '@angular/router';
 
 @Component({
   selector: 'app-gestion',
@@ -14,8 +16,13 @@ export class GestionPage implements OnInit {
 
   PizzaArray: Array<pizzas> = new Array<pizzas>();
   IngredientsArray: Array<ingredients> = new Array<ingredients>();
+  ingredientname = '';
+  private datatest: Subject<boolean>;
 
-  constructor(private pizzasservice: PizzasService, private panierservice: PannierService) { }
+  constructor(private pizzasservice: PizzasService, private panierservice: PannierService, private router: Router) {
+    this.datatest = this.pizzasservice.datatest;
+    this.datatest.subscribe(() => {this.loadDataPizza(); this.loadDataIngredients()});
+  }
 
   ngOnInit(): void {
     this.loadDataPizza();
@@ -23,6 +30,7 @@ export class GestionPage implements OnInit {
   }
 
   loadDataPizza() {
+    this.PizzaArray.splice(0, this.PizzaArray.length);
     this.pizzasservice.loadData('pizza').subscribe(
         result => {
           for (let index in result) {
@@ -41,12 +49,28 @@ export class GestionPage implements OnInit {
   }
 
   deletePizza(idpizza: number) {
-    this.pizzasservice.deleteData('pizza/' + idpizza);
+    const url = 'pizza/' + idpizza;
+    this.pizzasservice.deleteData(url);
   }
 
   deleteIngredient(idingredient: number) {
-    this.pizzasservice.deleteData('ingredient/' + idingredient);
+    const url = 'ingredient/' + idingredient;
+    this.pizzasservice.deleteData(url);
   }
 
+
+  addingredient() {
+    const body = {nom: this.ingredientname};
+    this.pizzasservice.addData('ingredient', body);
+  }
+
+  pizzamodyfy(pizza) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        pizza: pizza
+      }
+    };
+    this.router.navigate(['/pizzaform'], navigationExtras);
+  }
 
 }

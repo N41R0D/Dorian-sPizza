@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import pizzas from '../models/pizzas';
 
@@ -8,6 +8,8 @@ import pizzas from '../models/pizzas';
     providedIn: 'root'
 })
 export class PizzasService {
+
+    datatest = new Subject<boolean>();
 
     constructor(private http: HttpClient) {
     }
@@ -26,22 +28,42 @@ export class PizzasService {
     }
 
     deleteData(url: string) {
-        return this.http.delete<pizzas[]>('https://api.ynov.jcatania.io/' + url);
+        return this.http.delete<pizzas[]>('https://api.ynov.jcatania.io/' + url)
+            .subscribe(() => {
+                this.datatest.next(true)},
+                err => console.log(err)
+            );
     }
 
 
-    // addPizza(url: string, zpizza: string) {
-    //     return this.http.post<pizzas[]>('https://api.ynov.jcatania.io/' + url)
-    //         .pipe(
-    //             map(value => {
-    //                 if (value.length > 0) {
-    //                     return value;
-    //                 } else {
-    //                     throw new Error ('Pas de données trouvées');
-    //                 }
-    //             }),
-    //         );
-    // }
+    addData(url: string, zpizza: any) {
+
+        return this.http.post<pizzas[]>('https://api.ynov.jcatania.io/' + url, zpizza,
+            {
+                headers:{
+                    'content':"application/json"
+                }
+            })
+            .subscribe(() => {
+                    this.datatest.next(true)},
+                err => console.log(err)
+            );
+    }
+
+
+    patchData(url: string, zpizza: any) {
+
+        return this.http.patch<pizzas[]>('https://api.ynov.jcatania.io/' + url, zpizza,
+            {
+                headers:{
+                    'content':"application/json"
+                }
+            })
+            .subscribe(() => {
+                    this.datatest.next(true)},
+                err => console.log(err)
+            );
+    }
 
 
 }

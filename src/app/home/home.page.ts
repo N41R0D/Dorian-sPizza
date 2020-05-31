@@ -4,6 +4,7 @@ import {PizzasService} from '../services/pizzas.service';
 import {PannierService} from '../services/panier.service';
 import pizzas from '../models/pizzas';
 import {NavigationExtras, Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,22 @@ import {NavigationExtras, Router} from '@angular/router';
 export class HomePage implements OnInit{
 
   PizzaArray: Array<pizzas> = new Array<pizzas>();
+  cartcount: BehaviorSubject<number>;
 
-  constructor(private pizzasservice: PizzasService, private panierservice: PannierService, private router: Router) {}
+  constructor(private pizzasservice: PizzasService, private panierservice: PannierService, private router: Router) {
+    this.cartcount = this.panierservice.getCartItemCount();
+  }
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    // this.loadData();
+    this.ngOnInit();
+    console.log('Async operation has ended');
+    event.target.complete();
   }
 
   loadData() {
@@ -27,11 +39,9 @@ export class HomePage implements OnInit{
             this.PizzaArray.push(new pizzas(result[index]));
           }}
     );
-    // console.log(this.PizzaArray);
   }
 
   goToAboutPage(dataid) {
-    // console.log(dataid);
     const navigationExtras: NavigationExtras = {
       state: {
         pizza: dataid

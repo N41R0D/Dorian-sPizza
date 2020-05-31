@@ -24,9 +24,7 @@ export class DetailsPage implements OnInit {
   }
 
   loadData(tabingredients) {
-  console.log(tabingredients);
     for (const [key, value] of Object.entries(tabingredients)) {
-      console.log(key, value);
       this.pizzasservice.loadData('ingredient?id=' + value).subscribe(
           result => {
             for (let index in result) {

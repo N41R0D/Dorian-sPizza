@@ -8,13 +8,26 @@
 
     <ion-button slot="end" routerLink="/panier" fill="clear" color="dark">
       <ion-icon name="cart-outline" size="large"></ion-icon>
-        <ion-badge id="notifications-badge" color="light">{{this.cartItemCount}}</ion-badge>
+        <ion-badge id="notifications-badge" color="light">{{this.cartcount.value}}</ion-badge>
     </ion-button>
 
   </ion-toolbar>
 
 </ion-header>
+
+<!-- Default Refresher -->
+<!--<ion-content>-->
+<!--  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">-->
+<!--    <ion-refresher-content></ion-refresher-content>-->
+<!--  </ion-refresher>-->
+<!--</ion-content>-->
+
 <ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item  *ngFor ="let data of PizzaArray" >
       <ion-card>

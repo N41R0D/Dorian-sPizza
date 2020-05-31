@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PizzaformPageRoutingModule } from './pizzaform-routing.module';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { PizzaformPage } from './pizzaform.page';
 
@@ -15,6 +16,7 @@ import { PizzaformPage } from './pizzaform.page';
     IonicModule,
     PizzaformPageRoutingModule
   ],
-  declarations: [PizzaformPage]
+  declarations: [PizzaformPage],
+  providers: [Camera]
 })
 export class PizzaformPageModule {}
