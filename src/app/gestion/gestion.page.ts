@@ -59,11 +59,6 @@ export class GestionPage implements OnInit {
   }
 
 
-  addingredient() {
-    const body = {nom: this.ingredientname};
-    this.pizzasservice.addData('ingredient', body);
-  }
-
   pizzamodyfy(pizza) {
     const navigationExtras: NavigationExtras = {
       state: {
